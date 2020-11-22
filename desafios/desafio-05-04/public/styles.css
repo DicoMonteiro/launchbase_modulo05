@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-    --primary-color: #7159c1;
-    --secondary-color: #F7DF1E; 
+    --primary-color: #4682B4;
+    --secondary-color: #F7DF1E;
 }
 
 * {
@@ -17,7 +17,7 @@ body {
 }
 
 header {
-    background-color: white;
+    background-color: #DCDCDC;
     width: 100%;
     padding: 32px;
     text-align: center;
@@ -31,7 +31,7 @@ header {
 
 /* Fazendo o tratamento de acordo com o 'a' apos o 'a' anterior */
 .links a + a {
-    margin-left: 32px;
+    margin-left: 48px;
 }
 
 .links a {
@@ -66,7 +66,7 @@ header {
 
 .links a:hover::after {
     width: 100%;
-    transition: width 200ms ease-in-out;
+    transition: width 200ms ease-out;
     /* transition: width 200ms cubic-bezier(1, 0.2, 0.65, 0.89); */
 }
 
@@ -76,64 +76,46 @@ header {
 .card {
     background-color: white;
     width: 800px;
-    /* min-height: 50px; */
+    min-height: 400px;
 
-    /* espaçamento ao centro - para funcionar precisa do width e height*/
-    margin: 45px auto;
-    /* Definindo como grid o display para poder dividir em colunas os elementos  */
+    margin: 40px auto;
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 40% auto;
 
-    /* Coloando sombra na DIV - Se trata do eixo x, eixo y, curva a sombra e borrar a sombra */
-    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 6px -2px rgba(0, 0, 0, 0.4);
 
-    /* animation */
     opacity: 0;
-    animation: up 200ms ease-out 1s forwards;
-
-    /* animation-name: up; */
-    /* animation-duration: 700ms; */
-    /* Retorna para sua posicao incial, no caso para opacity = 0 */
-    /* animation-fill-mode: backwards; */
-    /* Finaliza na última posição, no caso para opacity = 1 */
-    /* animation-fill-mode: forwards; */
-    /* animation-timing-function: ease-out; */
-    /* animation-delay: 1s; */
-    /* Determinar em qual estado a animação vai estar, no exemplo, esta pausada */
-    /* animation-play-state: paused; */
-    /* Determinar em qual estado a animação vai estar, no exemplo, esta em execução */
-    /* animation-play-state: running; */
-    /* Realizar a direção da animação, no exemplo, ele vai executar o inverso, sumindo com o elemento */
-    /* animation-direction: reverse; */
-    /* Determina a interação que a animação vai ter ao ser exibida */
-    /* animation-iteration-count: 3; */
+    animation: card 300ms ease-in-out 1s 2 forwards;
 }
 
-
-@keyframes up {
+@keyframes card {
     from {
-        /* opacity: 0; */
-        transform: translateY(15px);
+        transform: translateX(15px);
     }
     to {
         opacity: 1;
     }
 }
 
-
-/* ==== DETAILS ==== */
+/* === DETAILS === */
 
 .details {
-    padding: 8px;
+    padding: 12px;
 }
 
 .details .item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 8px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 3.5px 0;
 }
 
-.details .item:last-child {
+.details .first {
     border: none;
+}
+/* Não funcionou usando o :first-child, como funciona o :last-child */
+.details .item:first-child {
+    border-top: none;
+    /* border: none; */
 }
 
 .details h3,
@@ -152,7 +134,6 @@ header {
 }
 
 .details h3 {
-    /* Deixar em caixa alta */
     text-transform: uppercase;
     font-weight: bold;
     color: var(--primary-color);
@@ -161,18 +142,17 @@ header {
 .details .item span {
     padding: 8px 16px;
     background-color: var(--secondary-color);
-    border-radius: 16px;
+    border-radius: 8px;
     color: #777;
-    margin-right: 4px;
     margin-top: 8px;
+    margin-right: 4px;
     display: inline-block;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 12px;
 }
 
-
-/* ==== FORM ==== */
+/* === FORM === */
 
 input, select {
     width: 100%;
@@ -192,8 +172,9 @@ input::placeholder {
     font-weight: normal;
 }
 
+button[class="form-create"],
 button[type="submit"],
-a.button {
+a.button{
     padding: 8px 16px;
     background-color: var(--primary-color);
     color: white;
@@ -210,13 +191,28 @@ a.button {
     text-align: center;
 }
 
-#form-delete button[type="submit"] {
-    margin-top: 8px;
-    background-color: lightcoral;
+/* Colocar um botão ao lado do outro, usando forms diferentes */
+.form-btn form {
+    display: inline;
+}
+
+form button[class="btn"] {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    margin-top: 16px;
+    width: 45%;
+    font-size: 16px;
 }
 
 
-/* INDEX INSTRUCTORS */
+#form-delete button[type="submit"] {
+    margin-left: 8px;
+    background-color: 	#DC143C;
+}
+
+/* INDEX TEACHERS AND STUDENT*/
 
 .table-container {
     display: block;
@@ -255,14 +251,13 @@ tbody tr td:first-child {
 }
 
 tbody tr td:first-child span {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background-position: center;
     background-size: cover;
     border-radius: 50%;
     box-shadow: 3px 1px 6px -4px black;
     border: 2px solid white;
-    margin-right: 32px;
 }
 
 tbody tr td:last-child a,
@@ -299,17 +294,13 @@ td:last-child {
     font-size: 12px;
 }
 
-.table-container .instructor_services,
-.table-container .member_email {
+.table-container .teacher_disciplina,
+.table-container .student_email{
     background-color: var(--secondary-color);
 }
 
-/* .table-container span:first-child {
-    margin-right: 4px;
-} */
-
-
 /* FILTERS */
+
 .table-container .header {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -336,10 +327,10 @@ td:last-child {
 }
 
 .table-container .header form button {
-    margin: 0;
+    margin: 0
 }
 
-/* PAGINATION */
+/* PAGINAÇÃO */
 
 .table-container {
     display: grid;
@@ -370,5 +361,3 @@ td:last-child {
     filter: brightness(0.3);
     border-bottom: 1px solid var(--primary-color)
 }
-
-

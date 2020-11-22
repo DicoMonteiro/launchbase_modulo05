@@ -113,32 +113,45 @@ Esse projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes
 [x] - Você tem liberdade para escolher a estilização que preferir para esse desafio.
 
 
-#### Desafio 4-4: Apresentação, edição e formatação dos dados de um professor
-“Comece fazendo o que é necessário, depois o que é possível, e de repente você estará fazendo o impossível.”
+#### Desafio 5-4: Paginação de resultados no BD
+
+“Não compare o seu bastidor com o palco do outro!”
 
 🚀 Sobre o desafio
 
-[x] - Nessa etapa você deve criar duas rotas: uma para apresentar os dados do professor (show) e outra para a edição dos dados cadastrados (edit). Além disso, realize a formatação dos dados cadastrados para a correta exibição no HTML
+[] - Nessa etapa, você deve implementar a lógica de paginação dos resultados do BD.
 
-## SHOW
 
-[x] - Crie uma rota para lidar com a apresentação dos dados cadastrados de um professor. Dentro do arquivo 'teachers.js', crie um método 'show' para buscar e retornar o professor a partir do 'id' fornecido na rota. Os seguintes dados precisam ser formatados:
+## Backend
 
-[x] - Idade: Crie um arquivo utils.js que exporta uma função chamada 'age'. Essa função deve retornar a idade a partir do parâmetro (data de nascimento) informado;
-[x] - Grau de escolaridade: crie uma função 'graduation' no arquivo 'utils.js'. Essa função deve retornar o grau de escolaridade formatado a partir do valor do select informado (ex.: Ensino Médio Completo para o valor medio do 'select');
-[x] - Acompanhamento: Utilize o método 'split' da string para gerar um array com as matérias que o professor leciona;
-[x] - Desde: Utilize o constructor 'Intl' e seus métodos para gerar uma data no formato 'dia/mes/ano'.
+[x] - Adicione no método index do controller de professores o tratamento dos campos page e limit que serão transmitidos via query params. Além disso, faça o cálculo do offset a ser passado para a query. Por fim, crie um novo método paginate no model que deve implementar toda a query já existente (com filter e order) e também adicionar a paginação (utilize LIMIT e OFFSET).
 
-[x] - Ao fim da apresentação dos dados, crie um link que irá redirecionar para a rota de edição dos dados cadastrados.
+## Frontend
 
-## Edição
+[x] - Crie um algoritmo que realize a paginação dos resultados da seguinte forma:
 
-[x] - Crie uma rota para lidar com a edição dos dados cadastrados de um professor. Dentro do arquivo 'teachers.js', crie um método 'edit' para buscar e retornar o professor a partir do 'id' fornecido na rota. Utilize a mesma interface da rota de apresentação dos dados do professor (lembrando de fazer o reaproveitamento do form com um arquivo 'fields.njk'). 
+* - As duas primeiras e últimas páginas sempre devem ser apresentadas (ex: 1, 2, 45 e 46 de um total de 46 pags.);
+* - Caso existam mais de 7 páginas, as intermediárias selecionadas devem ser apresentadas juntamente com seu sucessor e antecessor (ex.: 1, 2, ..., 12, 13 (selecionada), 14, ..., 23, 24);
+* - Só apresente as reticências se elas representarem um grupo de 2 páginas ou mais (ex.: 1, 2, 3 (sem reticências), 4, 5 (selecionada), 6, ...(pags 7 e 8), 9, 10).
 
-[x] - Por fim, crie uma função chamada date no arquivo utils.js. Essa função deve retornar a data no formato yyyy-mm-dd para a correta exibição no input do tipo date no HTML (lembre de tratar os dias e meses menores que 10 utilizando o método 'splice' da string).
+[x] - Em seguida, implemente na query do método paginate no model de professor a lógica da paginação:
 
-Estilização
+* - realizar o count de todos os registros de professores (utilize uma subquery);
+* - aplicar os filtros tanto na query de busca dos professores quanto na subquery de count.
+
+[x] - Por fim, utilize o scripts.js para renderizar no html (não faça no nunjucks) a paginação ao final da listagem (não esqueça que as reticências não devem ser links).
+
+## Ajustes finais
+
+[x] - Para finalizar, basta:
+
+* - Estilizar a paginação;
+* - Preservar o filter quando a página for alterada;
+* - Implementar no front dos estudantes a paginação (siga a mesma ideia aplicada nos professores).
+
+## Estilização
 
 [x] - Você tem liberdade para escolher a estilização que preferir para esse desafio.
+
 
 
